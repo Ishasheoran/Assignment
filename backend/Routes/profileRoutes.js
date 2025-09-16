@@ -1,9 +1,7 @@
-
 import express from "express";
 import Profile from "../profileSchema.js"
 // const Profile = require("../models/profile");
 const router = express.Router();
-
 // Create profile
 router.post("/", async (req, res) => {
   try {
@@ -14,7 +12,6 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
-
 // Get all profiles
 router.get("/", async (req, res) => {
   try {
