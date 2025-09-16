@@ -32,17 +32,21 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Get projects by skill
+
+// Get projects by skill (case-insensitive)
 router.get("/projects", async (req, res) => {
   try {
     const { skill } = req.query;
-    const profiles = await Profile.find({ skills: skill });
+    const profiles = await Profile.find({
+      skills: { $regex: new RegExp(skill, "i") }   // ✅ key change here
+    });
     const projects = profiles.flatMap(p => p.projects);
     res.json(projects);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 // Get top skills (count frequency)
 router.get("/skills/top", async (req, res) => {
