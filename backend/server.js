@@ -11,10 +11,14 @@ import profileRoutes from "./Routes/profileRoutes.js"
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: ["https://your-frontend.vercel.app"],
+  origin: [
+    "https://assignment-delta-khaki.vercel.app", 
+    "http://localhost:3000"                      // ✅ for local dev
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
 
 
 // health check
