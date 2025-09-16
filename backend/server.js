@@ -10,7 +10,12 @@ import profileRoutes from "./Routes/profileRoutes.js"
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ["https://your-frontend.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 
 // health check
 app.get("/health", (req, res) => res.status(200).send("OK"));
